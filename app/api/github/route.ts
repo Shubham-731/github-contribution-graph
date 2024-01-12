@@ -23,10 +23,19 @@ export async function POST(req: NextRequest) {
       }
     )
 
-    return NextResponse.json({
-      msg: "Success!",
-      data: response.data || null,
-    })
+    return NextResponse.json(
+      {
+        msg: "Success!",
+        data: response.data || null,
+      },
+      {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+          "Access-Control-Allow-Headers": "Content-Type, Authorization",
+        },
+      }
+    )
   } catch (error) {
     console.log(error)
     return NextResponse.json(

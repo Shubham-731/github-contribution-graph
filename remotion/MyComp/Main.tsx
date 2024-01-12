@@ -42,7 +42,10 @@ export const Main = ({ username }: z.infer<typeof CompositionProps>) => {
           data: {
             data: { user: GithubUserData | null }
           }
-        }> = await axios.post("/api/github", { username: name })
+        }> = await axios.post(
+          "https://github-contribution-graph-henna.vercel.app/api/github",
+          { username: name }
+        )
 
         setUserData(response.data.data.data.user)
         continueRender(handle)
