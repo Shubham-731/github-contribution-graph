@@ -29,7 +29,7 @@ export const RenderControls: React.FC<{
             text={text}
           ></Input>
           <Spacing></Spacing>
-          <AlignEnd>
+          {/* <AlignEnd>
             <Button
               disabled={state.status === "invoking"}
               loading={state.status === "invoking"}
@@ -40,10 +40,10 @@ export const RenderControls: React.FC<{
           </AlignEnd>
           {state.status === "error" ? (
             <ErrorComp message={state.error.message}></ErrorComp>
-          ) : null}
+          ) : null} */}
         </>
       ) : null}
-      {state.status === "rendering" || state.status === "done" ? (
+      {/* {state.status === "rendering" || state.status === "done" ? (
         <>
           <ProgressBar
             progress={state.status === "rendering" ? state.progress : 1}
@@ -53,7 +53,7 @@ export const RenderControls: React.FC<{
             <DownloadButton undo={undo} state={state}></DownloadButton>
           </AlignEnd>
         </>
-      ) : null}
+      ) : null} */}
     </InputContainer>
   )
 }
