@@ -1,11 +1,11 @@
-import { AwsRegion, RenderMediaOnLambdaOutput } from "@remotion/lambda/client";
+import { AwsRegion, RenderMediaOnLambdaOutput } from "@remotion/lambda/client"
 import {
   renderMediaOnLambda,
   speculateFunctionName,
-} from "@remotion/lambda/client";
-import { DISK, RAM, REGION, SITE_NAME, TIMEOUT } from "../../../../config.mjs";
-import { executeApi } from "../../../../helpers/api-response";
-import { RenderRequest } from "../../../../types/schema";
+} from "@remotion/lambda/client"
+import { DISK, RAM, REGION, SITE_NAME, TIMEOUT } from "../../../../config.mjs"
+import { executeApi } from "../../../../helpers/api-response"
+import { RenderRequest } from "../../../../types/schema"
 
 export const POST = executeApi<RenderMediaOnLambdaOutput, typeof RenderRequest>(
   RenderRequest,
@@ -16,7 +16,7 @@ export const POST = executeApi<RenderMediaOnLambdaOutput, typeof RenderRequest>(
     ) {
       throw new TypeError(
         "Set up Remotion Lambda to render videos. See the README.md for how to do so."
-      );
+      )
     }
     if (
       !process.env.AWS_SECRET_ACCESS_KEY &&
@@ -24,7 +24,7 @@ export const POST = executeApi<RenderMediaOnLambdaOutput, typeof RenderRequest>(
     ) {
       throw new TypeError(
         "The environment variable REMOTION_AWS_SECRET_ACCESS_KEY is missing. Add it to your .env file."
-      );
+      )
     }
 
     const result = await renderMediaOnLambda({
@@ -43,8 +43,11 @@ export const POST = executeApi<RenderMediaOnLambdaOutput, typeof RenderRequest>(
         type: "download",
         fileName: "video.mp4",
       },
-    });
+      chromiumOptions: {
+        disableWebSecurity: true,
+      },
+    })
 
-    return result;
+    return result
   }
-);
+)
